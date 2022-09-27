@@ -17,11 +17,9 @@ export const CHAINS: {
   [chainId: number]: ChainInformation;
 } = {
   1: {
-    urls: [
-      RPC_URL,
-    ],
+    urls: [RPC_URL],
     nativeCurrency: ETH,
-    name: "Goereli testnet",
+    name: "Mainnet",
     blockExplorerUrls: ["https://etherscan.io"],
   },
 };
