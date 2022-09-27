@@ -1,3 +1,6 @@
-export const GOV_CORE_ADDRESS = '0xc8B95f778b58d1AE97C9AD9F83A37f648F056364';
-export const VOTING_PORTAL_ADDRESS =
-  '0xbb5B9668658301ECa5B0a5b24C3e528E0091E5af';
+export const RPC_URL = "https://cloudflare-eth.com";
+
+// tenderly fork
+// export const RPC_URL = "https://rpc.tenderly.co/fork/db5e609a-1a9e-4021-af39-eed661de2767";
+
+export const DESIRED_CHAIN_ID = 1;
