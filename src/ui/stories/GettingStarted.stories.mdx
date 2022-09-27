@@ -1,0 +1,28 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Getting Started" />
+
+# UI kit
+The principle of styling is based on the use of the library [Stitches](https://stitches.dev/docs/introduction). Also for additional components is used [Headless UI](https://headlessui.com/).
+
+## Provider
+
+```bash
+import { AppGlobalStyles } from '../src/ui';
+
+...
+<AppGlobalStyles>
+  ...
+</AppGlobalStyles>
+...
+```
+
+## Usage
+Import components you want into your UI:
+```bash
+  import { Spinner } from '../src/ui';
+```
+And use them like so:
+```bash
+  <Spinner size={20} loaderLineColor="$dark" loaderCss={{ mainGradient: '' }} />
+```
