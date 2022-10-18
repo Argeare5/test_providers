@@ -9,8 +9,16 @@ const Home: NextPage = () => {
   const getAAVEBalances = useStore(store => store.getAAVEBalances);
   const aaveBalances = useStore(store => store.aaveBalances);
 
+  const getVotedInfo = useStore(store => store.getVotedInfo);
+  const votedInfo = useStore(store => store.votedInfo);
+
+  const getVoters = useStore(store => store.getVoters);
+  const voters = useStore(store => store.voters);
+
   useEffect(() => {
     getAAVEBalances();
+    getVotedInfo();
+    getVoters();
   }, [])
 
   return (
@@ -26,6 +34,17 @@ const Home: NextPage = () => {
 
       <ul>
         {aaveBalances.map((balance, index) => <li key={index}>{balance}</li>)}
+      </ul>
+
+      <div>
+        <h2>Voted info</h2>
+        <hr/>
+        <p>support: {votedInfo.support ? 'yes' : 'no'}</p>
+        <p>voted balance: {votedInfo.votedPower}</p>
+      </div>
+
+      <ul>
+        {voters.map((voter) => <li key={voter.proposalId}>{voter.address}</li>)}
       </ul>
     </div>
   );

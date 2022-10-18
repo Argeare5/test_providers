@@ -1,7 +1,7 @@
 import { StoreSlice, createWeb3Slice as createWeb3BaseSlice, Web3Slice as BaseWeb3Slice, } from '../../../packages/src';
 
 import { ethers } from "ethers";
-import { AAVEBalanceService } from "../services/AAVEBalanceService";
+import { AAVEBalanceService, VotersData } from '../services/AAVEBalanceService';
 import { DESIRED_CHAIN_ID, RPC_URL } from "../../utils/constants";
 import { AddEthereumChainParameter } from "@web3-react/types";
 import { ChainInformation, initChainInformationConfig } from "../../../packages/src/utils/chainInfoHelpers";
@@ -33,6 +33,15 @@ export type Web3Slice = BaseWeb3Slice & {
 
   aaveBalances: string[];
   getAAVEBalances: () => Promise<void>;
+
+  votedInfo: {
+    support: boolean;
+    votedPower: string;
+  };
+  getVotedInfo: () => Promise<void>;
+
+  voters: VotersData[];
+  getVoters: () => Promise<void>;
 };
 
 // having separate rpc provider for reading data only
@@ -68,5 +77,18 @@ export const createWeb3Slice: StoreSlice<Web3Slice> = (set, get) => ({
     const balances = await Promise.all(exampleAddresses.map(async (address) => await get().aaveBalanceService.getRandomAddressAAVEBalance(address)));
 
     set({ aaveBalances: balances.map((balance) => balance.toString()) })
+  },
+  votedInfo: {
+    support: false,
+    votedPower: '0',
+  },
+  getVotedInfo: async () => {
+    const votedInfo = await get().aaveBalanceService.getVotedInfo('0x25F2226B597E8F9514B3F68F00f494cF4f286491');
+    set({ votedInfo });
+  },
+  voters: [],
+  getVoters: async () => {
+    const voters = await get().aaveBalanceService.getVoters();
+    set({ voters });
   }
 });
